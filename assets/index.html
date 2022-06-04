@@ -19,10 +19,16 @@
 
 
 </head>
-
 <body>
-    <div class="scroll">0</div>
+    <!-- 로딩페이지 -->
+    <div class="loader">
+        <div class="loaderIn">
+            <h1>0%</h1>
+            <div class="line"></div>
+        </div>
+    </div>
 
+    <div class="scroll">0</div>
     <header id="header">
         <nav id="nav">
             <ul>
@@ -1043,7 +1049,6 @@ function init() {
     </footer>
     <!-- //footer -->
 
-
     </div>
     <!-- contents  -->
 
@@ -1071,6 +1076,38 @@ function init() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     <script>
+    // 로딩화면
+    const loader = document.querySelector('.loader');
+        const html = document.querySelector('html');
+
+        html.style.overflow = 'hidden'; //로딩 중 스크롤 방지
+
+        window.addEventListener('load', () => {
+            setTimeout(() => { //로딩속도 구현
+                loader.style.opacity = '0';
+                html.style.overflow = 'auto'; //스크롤 방지 해제
+
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 400);
+            }, 3000);
+        })
+        
+        // 로딩 카운트
+        var counter = 0;
+            var c = 0;
+            var i = setInterval(function () {
+                $(".loader h1").html(c + "%");
+
+                counter++;
+                c++;
+
+                if (counter == 101) {
+                    clearInterval(i);
+                }
+            }, 30);
+
+        //이미지 슬라이드    
         const swiper = new Swiper('.swiper', {
             // Optional parameters
             direction: 'horizontal',
@@ -1082,6 +1119,7 @@ function init() {
 
         });
 
+         
 
         //변수 설정
         const fullCircle = 2 * Math.PI;
