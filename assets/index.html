@@ -435,7 +435,7 @@ function init() {
             BLOCKS[type][direction].some(block => {
                 const x = block[0] + left;
                 const y = block[1] + top;
-                const target = playground.childNodesplayground.childNodes[y].childNodchildNodes[x] : null;
+                const target = playground.childNodes[y]? playground.childNodes[y].childNode[0]childNodes[x] : null;
                 const isAvailable = checkEmpty(target);
                     if (isAvailable) {
                      target.classList.add(type, 'moving');
@@ -1044,6 +1044,7 @@ function init() {
                 <div class="box3">
                     <span>2022.05. ~ </span>
                 </div>
+                
             </div>
         </div>
     </footer>
@@ -1082,7 +1083,7 @@ function init() {
 
         html.style.overflow = 'hidden'; //로딩 중 스크롤 방지
 
-        window.addEventListener('load', () => {
+        window.addEventListener('load' , () => {
             setTimeout(() => { //로딩속도 구현
                 loader.style.opacity = '0';
                 html.style.overflow = 'auto'; //스크롤 방지 해제
